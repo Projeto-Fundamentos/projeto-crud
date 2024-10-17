@@ -40,6 +40,7 @@ Certifique-se de configurar o ambiente de desenvolvimento corretamente:
 - Pendente
 
 ## Como Abrir Issues
+Para abrir uma issue, basta acessar o item ```Issues``` no ```Readme``` do projeto, ou acessar o item ```Projects``` na barra de navegação e selecionar ```Projeto CRUD - Fundamentos```. No quadro do projeto, basta clicar no botão ```+``` e em seguida, ```Create new issue```.
 - Antes de abrir uma nova issue, certifique-se de que o problema já não foi reportado antes.
 - Inclua o máximo de detalhes possível, incluindo passos para reproduzir o problema.
 - Use labels para categorizar a issue(ex.: ```bug```, ```enhancement```, ```question```).
