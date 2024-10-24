@@ -23,8 +23,18 @@
     - telefone
     - endereço
     - idade 
+    - pet adotado (caso não possuir, deixar uma string vazia "")
 - Listar clientes
+    - listar clientes
+    - listar cliente individual (selecionar pelo número de identificação)
 - Atualizar dados do cliente
+    - atualizar nome
+    - atualizar telefone
+    - atualizar endereço
+    - atualizar idade
+    - atualizar pet adotado
 - Apagar conta do cliente
+    - Apagar conta do cliente
+# Pets
 # Serviços
 # Produtos
