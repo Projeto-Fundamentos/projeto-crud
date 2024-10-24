@@ -9,7 +9,7 @@
     - listar todos funcionários
     - listar por cargo
     - listar funcionário individual (selecionar pelo número de identificação)
-- Atualizar dados do Funcionario
+- Atualizar dados do Funcionario (atualizar pelo id)
     - Atualizar nome
     - Atualizar idade
     - Atualizar cargo
@@ -23,18 +23,83 @@
     - telefone
     - endereço
     - idade 
-    - pet adotado (caso não possuir, deixar uma string vazia "")
+    - pet adotado 
+        - indicar o pet adotado utilizando o número de identificação do pet
+        - caso não possuir nenhum pet adotado, utilizar número padrão 0 (zero)
 - Listar clientes
     - listar clientes
     - listar cliente individual (selecionar pelo número de identificação)
-- Atualizar dados do cliente
+- Atualizar dados do cliente (atualizar pelo id)
     - atualizar nome
     - atualizar telefone
     - atualizar endereço
     - atualizar idade
     - atualizar pet adotado
 - Apagar conta do cliente
-    - Apagar conta do cliente
+    - Apagar conta do cliente (remover pelo número de identificação)
 # Pets
+- Criar cadstro do Pet
+    - número de identificação do pet (id)
+        - Verificar se existe registro no arquivo .json, caso existir, pegar o último número de identificação(id) e adicionar 1
+    - nome
+    - idade
+    - raça do pet
+        - criar uma lista com raças disponíveis, com opção de adicionar/remover uma raça caso esteja duplicada ou não esteja presente ainda
+    - cor
+    - observação
+        - caso não possuir nenhuma observação, deixar uma string vazia ""
+    - adotado
+        - indicar por qual cliente foi adotado
+        - caso não tenha sido adotado ainda, utilizar o número padrão 0 (zero)
+- Listar Pets
+    - Listar pet por idade
+    - Listar pet por raça
+    - Listar pet individdual (selecionar pelo número de identificação)
+- Atualizar cadastro do Pet (atualizar pelo id)
+    - Atualizar nome
+    - Atualizar idade
+    - Atualizar raça
+    - Atualizar cor
+    - Atualizar observação
+    - Atualizar adotado
+- Apagar cadastro do Pet
+    - Apagar cadastro do Pet (remover pelo número de identificação)
 # Serviços
+- Criar serviço
+    - número de identificação do serviço (id)
+        - Verificar se existe registro no arquivo .json, caso existir, pegar o último número de identificação(id) e adicionar 1
+    - nome do serviço
+    - descrição do serviço
+    - duração do serviço
+        - duração média de conclusão do serviço
+- Listar serviços
+    - listar serviços
+    - listar serviço individual
+        - listar serviço pelo número de identificação (id)
+- Atualizar serviço (atualizar pelo id)
+    - atualizar nome do serviço
+    - atualizar descrição do serviço
+    - atualizar duração do serviço
+- Remover serviço
+    - Apagar serviço (remover pelo número de identificação)
 # Produtos
+- Adicionar produtos
+    - número de identificação do produto (id)
+        - Verificar se existe registro no arquivo .json, caso existir, pegar o último número de identificação(id) e adicionar 1
+    - nome do produto
+    - descrição do produto
+    - valor do produto
+    - disponibilidade
+        - se o produto está ou não desponível
+- Listar produtos
+    - listar todos os produtos
+    - listar apenas um produto
+        - listar produto utilizando o número de identificação do produto (id)
+    - listar produtos disponíveis
+- Atualizar produto (atualizar pelo id)
+    - Atualizar nome do produto
+    - Atualizar descrição do produto
+    - Atualizar valor do produto
+    - Atualizar disponibilidade do produto
+- Remover produto
+    - Remover cadastro do produto através do número de identificação (id)
