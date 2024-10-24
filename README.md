@@ -44,7 +44,7 @@ bem-estar animal?
 - **Correspondência de Adoção Inteligente**: Implemente um algoritmo que leve em consideração os perfis dos animais e dos possíveis adotantes para sugerir correspondências compatíveis. Isso ajuda a otimizar o processo de adoção, encontrando lares adequados para os animais e garantindo que os adotantes encontrem o animal de estimação que melhor se adapte ao seu estilo de vida e preferências.
 
 ## Requisitos
-Para ver as especificações pensadas para cada CRUD, veja o [arquivo de especificações](./specifications.md).
+Para ver as especificações pensadas para cada CRUD, veja o [arquivo de especificações](./docs/specifications.md).
 
 - Realizar no Mínimo 3 CRUD (Create, Read, Update e Delete).
 
@@ -57,7 +57,7 @@ Acompanhe o planejamento e as issues deste projeto na seção de [Issues](https:
 
 ## Como Contribuir
 
-Confira o [Contributing](./CONTRIBUTING.md) para mais informações de como contribuir no projeto, bem como informações sobre inicialização e boas práticas para desenvolvimento do projeto.
+Confira o [Contributing](./docs/CONTRIBUTING.md) para mais informações de como contribuir no projeto, bem como informações sobre inicialização e boas práticas para desenvolvimento do projeto.
 
 ## Licença
 
