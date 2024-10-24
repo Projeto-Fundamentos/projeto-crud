@@ -65,4 +65,20 @@
 - Apagar cadastro do Pet
     - Apagar cadastro do Pet (remover pelo número de identificação)
 # Serviços
+- Criar serviço
+    - número de identificação do serviço (id)
+    - nome do serviço
+    - descrição do serviço
+    - duração do serviço
+        - duração média de conclusão do serviço
+- Listar serviços
+    - listar serviços
+    - listar serviço individual
+        - listar serviço pelo número de identificação (id)
+- Atualizar serviço
+    - atualizar nome do serviço
+    - atualizar descrição do serviço
+    - atualizar duração do serviço
+- Remover serviço
+    - Apagar serviço (remover pelo número de identificação)
 # Produtos
