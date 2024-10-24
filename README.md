@@ -25,7 +25,7 @@ Este projeto faz parte da 2ª avaliação de Fundamentos de Programação e expl
 
 - Rafael Farias Santana⁠
 
-- Ramom
+- Ramom de Oliveira Aguiar
 
 ## Tema escolhido
 
