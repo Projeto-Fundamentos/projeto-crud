@@ -76,6 +76,7 @@ Para abrir uma issue, basta acessar o item ```Issues``` no ```Readme``` do proje
 - Antes de abrir uma nova issue, certifique-se de que o problema já não foi reportado antes.
 - Inclua o máximo de detalhes possível, incluindo passos para reproduzir o problema.
 - Use labels para categorizar a issue(ex.: ```bug```, ```enhancement```, ```question```).
+- [Exemplo de issue](https://github.com/Projeto-Fundamentos/projeto-crud/issues/32)
 
 ## Criando e Revisando Pull Requests
 1. **Abra um Pull Request:**
