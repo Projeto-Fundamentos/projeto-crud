@@ -23,7 +23,9 @@
     - telefone
     - endereço
     - idade 
-    - pet adotado (caso não possuir, deixar uma string vazia "")
+    - pet adotado 
+        - indicar o pet adotado utilizando o número de identificação do pet
+        - caso não possuir nenhum pet adotado, utilizar número padrão 0 (zero)
 - Listar clientes
     - listar clientes
     - listar cliente individual (selecionar pelo número de identificação)
@@ -34,7 +36,33 @@
     - atualizar idade
     - atualizar pet adotado
 - Apagar conta do cliente
-    - Apagar conta do cliente
+    - Apagar conta do cliente (remover pelo número de identificação)
 # Pets
+- Criar cadstro do Pet
+    - número de identificação do pet (id)
+        - Verificar se existe registro no arquivo .json, caso existir, pegar o último número de identificação(id) e adicionar 1
+    - nome
+    - idade
+    - raça do pet
+        - criar uma lista com raças disponíveis, com opção de adicionar/remover uma raça caso esteja duplicada ou não esteja presente ainda
+    - cor
+    - observação
+        - caso não possuir nenhuma observação, deixar uma string vazia ""
+    - adotado
+        - indicar por qual cliente foi adotado
+        - caso não tenha sido adotado ainda, utilizar o número padrão 0 (zero)
+- Listar Pets
+    - Listar pet por idade
+    - Listar pet por raça
+    - Listar pet individdual (selecionar pelo número de identificação)
+- Atualizar cadastro do Pet
+    - Atualizar nome
+    - Atualizar idade
+    - Atualizar raça
+    - Atualizar cor
+    - Atualizar observação
+    - Atualizar adotado
+- Apagar cadastro do Pet
+    - Apagar cadastro do Pet (remover pelo número de identificação)
 # Serviços
 # Produtos
