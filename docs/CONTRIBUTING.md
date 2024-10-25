@@ -83,6 +83,7 @@ Para abrir uma issue, basta acessar o item ```Issues``` no ```Readme``` do proje
     - Ao usar o comando ```git push```, na página principal do repositório deve aparecer um aviso acima dos arquivos do repositório e um botão para ser criado o Pull Request.
     - Descreva claramente as mudanças e por que foram feitas.
     - Relacione o PR a uma issue, se houver, usando ```Closes #número-da-issue```.
+    > Ao criar um PR, designe os reviewers **Victor** e **Marina**.
 2. **Revisão de Código:**
     - Peça para pelo para um dos membros revisores da equipe, **Victor ou Marina**, revisar o PR.
     - Caso ache pertinente, comente sobre alterações que poderiam ser feitas e/ou sugerir melhoras.
