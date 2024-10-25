@@ -38,7 +38,7 @@
 - Apagar conta do cliente
     - Apagar conta do cliente (remover pelo número de identificação)
 # Pets
-- Criar cadstro do Pet
+- Criar cadastro do Pet
     - número de identificação do pet (id)
         - Verificar se existe registro no arquivo .json, caso existir, pegar o último número de identificação(id) e adicionar 1
     - nome
