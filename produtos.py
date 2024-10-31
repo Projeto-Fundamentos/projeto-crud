@@ -51,6 +51,9 @@ class Product:
                         pyautogui.alert("Entrada inválida para valor ou disponibilidade.")
                         continue
                     cls.add_product(product_id, name, description, value, available)
+                case "2":
+                    # LÓGICA PARA EXIBIR PRODUTOS
+                    pass
                 case "3":
                     data = cls.load_file()
                     update_id = pyautogui.prompt(
@@ -92,7 +95,9 @@ class Product:
                         Product.update_product(update_id, new_data)
                     else:
                         print('vazio')
-                           
+                case "4":
+                    # LÓGICA PARA DELETAR PRODUTO
+                    pass
                 case "0":
                     pyautogui.alert("Encerrando o programa.")
                     break
