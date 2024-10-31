@@ -59,16 +59,22 @@ def listar_pets():
 
 
 #UPDATE
-def atualizar_pet(entrada, nome_novo, idade, raca, cor, obs, adotado):
+def atualizar_pet(entrada, nome, idade, raca, cor, obs, adotado):
     pet_atualiado = carregar_pet()
     for pet in pet_atualiado:
         if entrada == pet['nome'] or entrada == pet['numid']:
-            pet['nome'] = nome_novo            
+            pet['nome'] = nome         
             pet['cor'] = cor            
             pet['raca'] = raca            
             pet['idade'] = idade
             pet['obs'] = obs
             pet['adotado'] = adotado
+            nome = input('Digite o nome atualizado: ')
+            cor = input('Digite a cor atualizada: ')
+            raca = input('Digite a raca atualizada: ')
+            idade = input('Digite a idade atualizada: ')
+            obs = input('Digite a observação: ')
+            adotado = input('Pet adotado?\n(1) Sim (0)Não ')
             break
     with open(pets, 'w') as f:
         json.dump(pet_atualiado, f, indent=4)
@@ -79,8 +85,8 @@ def deletar_pet(entrada):
     pet_adotado = carregar_pet()
     for pet in pet_adotado:
         if entrada == pet['nome'] or entrada == pet['numid']:
-            pet_adotado.remove(pet)
-            break
+            pet_adotado.remove(pet)  
+            break 
     with open(pets, 'w') as f:
         json.dump(pet_adotado, f, indent=4)
     print('PET REMOVIDO!')
