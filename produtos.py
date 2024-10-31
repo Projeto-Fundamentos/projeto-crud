@@ -20,6 +20,14 @@ class Product:
     def load_file():
         with open(products_file, 'r') as file:
             return json.load(file)
+        
+    @staticmethod
+    def generate_id():
+        data = Product.load_file()
+        if data:
+            max_id = max(int(product_id) for product_id in data.keys())
+            return str(max_id + 1)
+        return "1"
 
     @classmethod
     def menu(cls):
@@ -30,7 +38,7 @@ class Product:
             )
             match(option):
                 case "1":
-                    product_id = pyautogui.prompt("ID do produto: ")
+                    product_id = cls.generate_id()
                     name = pyautogui.prompt("Nome do produto: ")
                     description = pyautogui.prompt("Descrição do produto: ")
                     value = pyautogui.prompt("Valor do produto: ")
