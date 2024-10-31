@@ -15,6 +15,11 @@ class Product:
         self.description = description
         self.value = value
         self.available = available
+        
+    @staticmethod
+    def load_file():
+        with open(products_file, 'r') as file:
+            return json.load(file)
 
     @classmethod
     def menu(cls):
@@ -44,12 +49,7 @@ class Product:
                 case _:
                     pyautogui.alert("Opção inválida. Tente novamente.")
                     continue
-
-    @staticmethod
-    def load_file():
-        with open(products_file, 'r') as file:
-            return json.load(file)
-        
+       
     @classmethod    
     def add_product(cls, product_id, name, description, value, available):
         data = cls.load_file()
