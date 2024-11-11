@@ -2,7 +2,6 @@ import json
 import os
 import uuid
 
-
 arquivo_funcionarios = "funcionarios.json"
 
 def carregar_funcionarios():
