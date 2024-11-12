@@ -1,35 +1,48 @@
 import json
 import os
-import uuid
 
-clientes = os.path.join(os.path.dirname(__file__), 'clientes.json')
+
+clientes = os.path.join(os.path.dirname(__file__), 'clientes.json') 
+
+
 #carregar clientes
 def carregar_clientes():
     if not os.path.exists(clientes):
         with open(clientes, 'w') as f:
-            json.dump([], f, indent=4)
+            json.dump({}, f, indent=4)
     with open(clientes, 'r') as f:
         return json.load(f)
+ 
 #gerar ID do cliente
 def gerar_id():
-    return str(uuid.uuid4())
+    data = carregar_clientes()
+    if data:
+        max_id = max(int(cliente_id) for cliente_id in data.keys())
+        return str(max_id + 1)
+    return "1"
+
+class Cliente:
+    def __init__(self, nome, telefone, endereco, idade):
+        self.cliente_id = gerar_id()
+        self.nome = nome
+        self.telefone = telefone
+        self.endereco = endereco
+        self.idade = idade
+        self.adotado = 0
 
 #Create
-def adicionar_cliente(nome_cliente, telefone_cliente, endereco_cliente, idade_cliente, pet_adotado = 0):
-    print(os.path.dirname(__file__))
-    cliente = {
-        "numid": gerar_id(),
-        "nome": nome_cliente,
-        "telefone": telefone_cliente,
-        "endereço": endereco_cliente,
-        "idade": idade_cliente,
-        "pet_adotado": pet_adotado
-        
+def adicionar_cliente(nome, telefone, endereco, idade):
+    lista_cliente = carregar_clientes()
+    novo_cliente = Cliente(nome,telefone, endereco, idade)
+    lista_cliente[novo_cliente.cliente_id] = {
+        'nome': novo_cliente.nome,
+        'telefone': novo_cliente.telefone,
+        'endereço': novo_cliente.endereco,
+        'idade': novo_cliente.idade,
+        'adotado':novo_cliente.adotado
     }
-    novo_cliente = carregar_clientes()
-    novo_cliente.append(cliente)
     with open(clientes, 'w') as f:
-        json.dump(novo_cliente, f, indent=4)
+        json.dump(lista_cliente, f, indent=4)
 
 #Read
 def listar_clientes():
@@ -82,7 +95,7 @@ def atualizar_cliente():
 def deletar_cliente(entrada):
     cliente = carregar_clientes()
     for key in cliente:
-        if entrada == key['numid'] or entrada == key['nome']:
+        if entrada == key['nome'] or entrada == key['numid']:
             cliente.remove(key)
             print('CLIENTE REMOVIDO!')
             break
@@ -105,8 +118,9 @@ while (True):
         atualizar_cliente()
     elif escolha == 4:
         entrada = input('Digite o nome ou id do cliente: ')
-        deletar_cliente(entrada)
+        deletar_cliente(entrada)    
     else:
+        print("Saindo...")
         break    
                       
 
