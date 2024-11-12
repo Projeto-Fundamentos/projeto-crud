@@ -1,8 +1,7 @@
 import json
 import os
-import uuid
 
-arquivo_funcionarios = "funcionarios.json"
+arquivo_funcionarios = os.path.join(os.path.dirname(__file__), 'funcionarios.json')
 
 def carregar_funcionarios():
 #os.path.getsize(arquivo_funcionarios) > 0: Verifica se o arquivo não está vazio 
@@ -19,18 +18,26 @@ def salvar_funcionario(funcionarios):
     with open(arquivo_funcionarios, 'w') as file:
         json.dump(funcionarios, file, indent=4)
 
+def gerar_id_funcionario():
+    data = carregar_funcionarios()
+    if data:
+        maxId = max(int(id_funcionario) for id_funcionario in data.keys())
+        return str(maxId + 1)
+    return "1"
+
 def add_funcionario():
     #função para adicionar funcionário no sistema
-    id = str(uuid.uuid4())  # Gera um ID único como string
+    id_funcionario = gerar_id_funcionario()  # Gera um ID único 
     nome = input("Insira o nome do funcionário:  ")
     idade = int(input("Insira a idade do funcionário:  "))
     cargo = input("Insira o cargo do funcionário:  ")
 
     funcionario = {
-        "id_funcionario": id,
+        "id_funcionario": id_funcionario,
         "nome": nome,
         "idade": idade,
-        "cargo": cargo
+        "cargo": cargo,
+        "obs": ""
     } # dicionário que carregará as informações de cada funcionário, aparecendo dessa forma no JSON
 
     funcionarios = carregar_funcionarios()
@@ -51,6 +58,52 @@ def listar_funcionarios():
             print(f"{i}. ID: {funcionario['id_funcionario']}\nNome: {funcionario['nome']}\nIdade: {funcionario['idade']}\nCargo: {funcionario['cargo']}")
             #Listará os funcionários cadastrados com suas informações
         print()
+
+def excluir_funcionario(id):
+    lista_funcionarios = carregar_funcionarios()
+    funcionario = False
+    for id_funcionario, desc in lista_funcionarios():
+        if id_funcionario == id:
+            funcionario = True
+            del lista_funcionarios[id_funcionario]
+            with open(arquivo_funcionarios, 'w') as f:
+                json.dump(lista_funcionarios, f, indent=4)
+            print("Funcionário removido!!")
+            break
+        if funcionario == False:
+            print("Funcionario não encontrado.")
+
+    
+
+def atualizar_fucnionario(id):
+    lista_funcionarios = carregar_funcionarios()
+    for id_funcionario, desc in lista_funcionarios.items():
+        if id_funcionario == id:
+            while True:
+                try:
+                    escolha = int(input("(1) Alterar nome\n(2) Alterar cargo\n(3) Adicionar Observação\n(4) Sair"))
+                    match escolha:
+                        case 1:
+                            nome = input("Digite o novo nome:  ")
+                            lista_funcionarios[id_funcionario]['nome'] = nome
+                        case 2:
+                            cargo = input("Insira o novo cargo :  ")
+                            lista_funcionarios[id_funcionario]['cargo'] = cargo
+                        case 3:
+                            obs = input("Digite a observação: ")
+                            lista_funcionarios[id_funcionario]['obs'] = obs
+                        case 4:
+                            break
+                        case __:
+                            print("Opção inválida\nDigite uma opção válida:  ")
+                except ValueError:
+                    print("Entrada invalida. \nDigite uma opção válida:  ")
+            print("Campo atualizado com sucesso!!")
+            with open(arquivo_funcionarios, 'w') as f:
+                json.dump(lista_funcionarios, f, indent=4)
+
+
+
 
 def excluir_funcionario():
     listar_funcionarios()
