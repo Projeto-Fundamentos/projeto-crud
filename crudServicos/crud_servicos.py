@@ -24,6 +24,7 @@ class Servico:
         self.descricao = descricao 
         self.duracao = duracao
 
+
 #CREATE    
 def adicionar_servicos(nome, descricao, duracao):
     lista_servicos = carregar_servicos()
@@ -65,15 +66,9 @@ def achar_por_id(id):
             return desc
 
 #print(listar_por_nome())
-
 #print(listar_por_descricao())
-
 #print(listar_por_duracao())
-
 #print(achar_por_id('2'))
-
-
-
 
 #UPDATE
 def atualizar_servicos(id):
@@ -88,7 +83,7 @@ def atualizar_servicos(id):
                             nome = input('Digite o novo nome: ')
                             lista_servicos[servico_id]['nome'] = nome
                         case 2:
-                            cor = input('Digite a nova descricao: ')
+                            desc = input('Digite a nova descricao: ')
                             lista_servicos[servico_id]['descricao'] = desc
                         case 3:
                             duracao = input('Digite a nova duracao: ')
@@ -123,3 +118,45 @@ def remover_servicos(id):
         print('Servico não encontrado')
 
 #remover_servicos('2')
+
+#Teste
+
+while True:
+    try:
+        print("Olá, aqui você poderá usar nosso sistema de cadastro de servicos. O que gostaria de fazer?")
+        menu = int(input('(1)Criar um servico\n(2)Listar um servico ja criado\n(3)Alterar um servico\n(3)Excluir um servico\n(7)Sair\n'))
+        match menu:
+            case 1:
+                nome = input("Escreva o nome do servico:\n")
+                desc = input("Escreva uma descricao para o servico:\n")
+                duracao = input("Escreva a duracao do servico:\n")
+                adicionar_servicos(nome, desc, duracao)
+            case 2:
+                print("\t\tComo você gostaria de listar o servico?")
+                listagem = int(input('\t\t(1)Listar por nome\n\t\t(2)Listar por descricao\n\t\t(3)Listar por duracao\n\t\t(4)Busca por ID\n\t\t(7)Sair\n'))
+                match listagem:
+                    case 1:
+                        print('\t\t',listar_por_nome())
+                    case 2:
+                        print('\t\t',listar_por_descricao())
+                    case 3:
+                        print('\t\t',listar_por_duracao())
+                    case 4:
+                        id = input("\t\tEscreva o id do servico desejado:")
+                        print('\t\t',achar_por_id(id))
+                    case 7:
+                        break
+                    case __:
+                        print('\t\tOpção invalida.\nDigite uma opção valida: ')
+            case 3:
+                 id = input("Escreva o id do servico que vc deseja alterar:")
+                 atualizar_servicos(id)
+            case 4:
+                 id = input("Escreva o id do servico que vc deseja Excluir:")
+                 remover_servicos(id)
+            case 7:
+                break
+            case __:
+                print('Opção invalida.\nDigite uma opção valida: ')
+    except ValueError:
+        print('Entrada invalida.\nDigite uma opção valida: ')
