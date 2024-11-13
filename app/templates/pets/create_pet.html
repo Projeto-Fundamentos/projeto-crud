@@ -1,0 +1,23 @@
+<!-- templates/pets_create.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Pet</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Create Pet</h1>
+    <form action="/pets/" method="post">
+        <label for="name">Pet Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description"><br><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age"><br><br>
+        <button type="submit">Create</button>
+    </form>
+    <a href="/pets/read">View Pets</a>
+</body>
+</html>

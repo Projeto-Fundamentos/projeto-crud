@@ -19,7 +19,7 @@ def get_pets_by_breed():
     pets = listar_por_raca()
     return pets
 
-@router.get("/pets/{pet_id}")
+@router.get("/pets/get_pet/{pet_id}")
 def get_pet_by_id(pet_id: str):
     pet = achar_por_id(pet_id)
     return pet
