@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from app.models.clientes import ClienteModel
-from app.crud.clientes import adicionar_cliente, listar_clientes, atualizar_cliente, deletar_cliente
+from app.cruds.clientes import adicionar_cliente, listar_clientes, atualizar_cliente, deletar_cliente
 
 router = APIRouter()
 

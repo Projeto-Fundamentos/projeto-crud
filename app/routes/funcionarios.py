@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from typing import List
-from app.crud.funcionarios import add_funcionario, listar_funcionarios, excluir_funcionario, atualizar_funcionario
+from app.cruds.funcionarios import add_funcionario, listar_funcionarios, excluir_funcionario, atualizar_funcionario
 from app.models.funcionarios import Funcionario
 
 router = APIRouter()

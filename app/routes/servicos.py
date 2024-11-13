@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from crud.servicos import adicionar_servicos, listar_por_nome, listar_por_descricao, listar_por_duracao, achar_por_id, atualizar_servicos, remover_servicos
-from models.funcionarios import Servico
+from app.cruds.servicos import adicionar_servicos, listar_por_nome, listar_por_descricao, listar_por_duracao, achar_por_id, atualizar_servicos, remover_servicos
+from app.models.servicos import Servico
 
 router = APIRouter()
 
