@@ -56,3 +56,24 @@ class Product:
             Product.save_file(data)
         else:
             raise HTTPException(status_code=404, detail="Campo inválido para atualizar")
+   
+    @staticmethod
+    def get_all_products():
+        data = Product.load_file()
+        return {"products": data}
+
+    @staticmethod
+    def get_single_product(product_id):
+        data = Product.load_file()
+        if product_id not in data:
+            raise HTTPException(status_code=404, detail="Produto não encontrado")
+        return {"id": product_id, **data[product_id]}
+
+    @staticmethod
+    def delete_product(product_id):
+        data = Product.load_file()
+        if product_id not in data:
+            raise HTTPException(status_code=404, detail="Produto não encontrado")
+        deleted_product = data.pop(product_id)
+        Product.save_file(data)
+        return {"message": f"Produto {product_id} removido com sucesso", "deleted_product": deleted_product}
