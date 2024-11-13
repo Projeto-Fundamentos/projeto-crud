@@ -2,7 +2,7 @@ import json
 import os
 
 from fastapi import HTTPException
-from config import DATA_PATHS
+from app.config import DATA_PATHS
 
 products_file = DATA_PATHS['produtos']
 

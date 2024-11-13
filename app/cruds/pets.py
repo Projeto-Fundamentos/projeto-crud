@@ -1,6 +1,6 @@
 import os
 import json
-from config import DATA_PATHS
+from app.config import DATA_PATHS
 from app.models.pets import PetModel
 
 pets_file = DATA_PATHS['pets']

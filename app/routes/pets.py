@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.crud.pets import adicionar_pet, listar_por_idade, listar_por_raca, achar_por_id, atualizar_pet, remover_pet
+from app.cruds.pets import adicionar_pet, listar_por_idade, listar_por_raca, achar_por_id, atualizar_pet, remover_pet
 from app.models.pets import PetModel
 
 router = APIRouter()
