@@ -2,125 +2,135 @@ import json
 import os
 
 
-clientes = os.path.join(os.path.dirname(__file__), 'clientes.json') 
+arquivo_clientes = os.path.join(os.path.dirname(__file__), 'clientes.json') 
 
-
-#carregar clientes
 def carregar_clientes():
-    if not os.path.exists(clientes):
-        with open(clientes, 'w') as f:
-            json.dump({}, f, indent=4)
-    with open(clientes, 'r') as f:
-        return json.load(f)
- 
-#gerar ID do cliente
-def gerar_id():
-    data = carregar_clientes()
-    if data:
-        max_id = max(int(cliente_id) for cliente_id in data.keys())
-        return str(max_id + 1)
-    return "1"
-
-class Cliente:
-    def __init__(self, nome, telefone, endereco, idade):
-        self.cliente_id = gerar_id()
-        self.nome = nome
-        self.telefone = telefone
-        self.endereco = endereco
-        self.idade = idade
-        self.adotado = 0
-
-#Create
-def adicionar_cliente(nome, telefone, endereco, idade):
-    lista_cliente = carregar_clientes()
-    novo_cliente = Cliente(nome,telefone, endereco, idade)
-    lista_cliente[novo_cliente.cliente_id] = {
-        'nome': novo_cliente.nome,
-        'telefone': novo_cliente.telefone,
-        'endereço': novo_cliente.endereco,
-        'idade': novo_cliente.idade,
-        'adotado':novo_cliente.adotado
-    }
-    with open(clientes, 'w') as f:
-        json.dump(lista_cliente, f, indent=4)
-
-#Read
-def listar_clientes():
-    clientes = carregar_clientes()
-    opcao = int(input('1: Listar cliente por nome\n2: Achar cliente pelo ID\nOpção(1/2): '))
-    match opcao:
-        case 1:
-            cliente_por_nome = sorted(clientes, key=lambda cliente: (cliente['nome']))
-            for key in cliente_por_nome:
-                print('-'*150)
-                print(key)
-            print('-'*150)
-            return cliente_por_nome
-        case 2:
-            entrada = input('Digite o ID do cliente: ')
-            for key in clientes:
-                if entrada == key['numid']:
-                    print(f'ID: {key['numid']}\nNome: {key['nome']}\nTelefone: {key['telefone']}\nEndereço: {key['endereço']}\nPet adotado: {key['pet_adotado']}')
-        case __:
-            print('Opção invalida.')
-            listar_clientes() 
-
-#Update
-def atualizar_cliente():
-    lista_clientes = carregar_clientes()
-    entrada = input('Digite o nome ou ID do cliente: ')
-    for key in lista_clientes:
-        if entrada == key['nome'] or entrada == key['numid']:
-            nome = input('Nome do cliente atualizado: ')           
-            telefone = input('Telefone do cliente atualizado: ')            
-            endereco = input('Endereço do cliente atualiziado: ')           
-            while True:
-                try:
-                    idade = int(input('Idade do cliente atualizada: '))
-                    break
-                except ValueError:
-                    print('Erro: Por favor, digite um número inteiro: ')   
-            pet_adotado = 0
-            key['nome'] = nome
-            key['telefone'] = telefone
-            key['endereço'] = endereco
-            key['idade'] = idade
-            key['pet_adotado'] = pet_adotado
-            with open(clientes, 'w') as f:
-                json.dump(lista_clientes, f, indent=4)
-            print('CLIENTE ATUALIZADO!')
-            break   
-
-#Delete
-def deletar_cliente(entrada):
-    cliente = carregar_clientes()
-    for key in cliente:
-        if entrada == key['nome'] or entrada == key['numid']:
-            cliente.remove(key)
-            print('CLIENTE REMOVIDO!')
-            break
-    with open(clientes, 'w') as f:
-        json.dump(cliente, f, indent=4)
-     
-
-#teste
-while (True):
-    escolha = int(input('1: Adicionar cliente\n2: Procurar cliente\n3: Atualizar cliente\n4: Deletar cliente\nOpção:(1/2/3/4): '))
-    if escolha == 1:
-        nome = input('Digite o nome: ')
-        telefone = input('Digite o telefone: ')
-        endereco = input('Digite o endereco: ')
-        idade = input('Digite o idade: ')
-        adicionar_cliente(nome, telefone, endereco, idade)
-    elif escolha == 2:
-        listar_clientes()
-    elif escolha == 3:
-        atualizar_cliente()
-    elif escolha == 4:
-        entrada = input('Digite o nome ou id do cliente: ')
-        deletar_cliente(entrada)    
+    
+    if os.path.exists(arquivo_clientes) and os.path.getsize(arquivo_clientes) > 0:
+        with open(arquivo_clientes, 'r') as file:
+            return json.load(file)  
     else:
-        print("Saindo...")
-        break    
-                      
+        return {}
+
+def salvar_cliente(clientes):
+    
+    with open(arquivo_clientes, 'w') as file:
+        json.dump(clientes, file, indent=4)  
+
+def gerar_id_cliente(clientes):
+    
+    if clientes:
+        maxId = max(int(id_cliente) for id_cliente in clientes.keys())
+        return str(maxId + 1)
+    return "1" 
+
+def adicionar_cliente():
+    
+    clientes = carregar_clientes()
+    id_cliente = gerar_id_cliente(clientes)  
+    nome = input("Nome do cliente:  ")
+    telefone = input("Telefone do cliente: ")
+    endereco = input("Endereço do cliente: ")
+    idade = int(input("Idade do cliente:  "))
+    adotado = 0
+
+    cliente = {
+        "nome": nome,
+        "telefone": telefone,
+        "endereco":endereco,
+        "idade": idade,
+        "adotado": adotado
+    }
+
+    clientes[id_cliente] = cliente
+    salvar_cliente(clientes)
+    print("Cliente cadastrado!")
+
+def listar_clientes():
+    
+    clientes = carregar_clientes()
+
+    if not clientes:
+        print("Nenhum cliente cadastrado!")
+    else:
+        print("------ CLIENTES ------")
+        for id_cliente, dados in clientes.items():
+            print(f"ID: {id_cliente}\nNome: {dados['nome']}\nTelefone: {dados['telefone']}\nEndereco {dados['endereco']}\nIdade: {dados['idade']}\nAdotado {dados['adotado']}")
+        print()
+
+def atualizar_cliente():
+    
+    clientes = carregar_clientes()
+    listar_clientes()
+    
+    if clientes:
+        id_cliente = input("Digite o ID do cliente a ser atualizado: ")
+        
+        if id_cliente in clientes:
+            print(f"\nAtualizando informações de {clientes[id_cliente]['nome']}")
+            
+            novo_nome_cliente = input("Novo nome do cliente: ")
+            novo_telefone_cliente = input("Novo telefone do cliente: ")
+            novo_endereco_cliente = input("Novo endereço: ")
+            nova_idade_cliente = input("Nova idade do cliente: ")
+            novo_pet_cliente = input("Novo pet do cliente: ")
+
+            if novo_nome_cliente:
+                clientes[id_cliente]['nome'] = novo_nome_cliente
+            if novo_telefone_cliente:
+                clientes[id_cliente]['telefone'] = novo_telefone_cliente
+            if novo_endereco_cliente:
+                clientes[id_cliente]['endereco'] = novo_endereco_cliente        
+            if nova_idade_cliente and nova_idade_cliente.isdigit():
+                clientes[id_cliente]['idade'] = int(nova_idade_cliente)
+            if novo_pet_cliente:
+                clientes[id_cliente]['adotado'] = novo_pet_cliente
+
+            salvar_cliente(clientes)
+            print(f"Cliente '{clientes[id_cliente]['nome']}' atualizado com sucesso!\n")
+        else:
+            print("Cliente não encontrado.") 
+
+def deletar_cliente():
+    
+    clientes = carregar_clientes()
+    listar_clientes()
+
+    if clientes:
+        id_cliente = input("Digite o ID do cliente a ser excluído: ")
+        
+        if id_cliente in clientes:
+            del clientes[id_cliente]  
+            salvar_cliente(clientes)
+            print(f"Cliente '{id_cliente}' excluído com sucesso!")
+        else:
+            print("Cliente não encontrado.")
+
+def menu():
+   
+    while True:
+        print("1. Cadastrar Cliente")
+        print("2. Listar Clientes")
+        print("3. Atualizar Clientes")
+        print("4. Excluir Clientes")
+        print("5. Sair")
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == '1':
+            adicionar_cliente()
+        elif opcao == '2':
+            listar_clientes()
+        elif opcao == '3':
+            atualizar_cliente()
+        elif opcao == '4':
+            deletar_cliente()
+        elif opcao == '5':
+            print("Saindo...")
+            break
+        else:
+            print("Opção indisponível! Tente novamente por favor.\n")
+
+menu()
+
+
 
