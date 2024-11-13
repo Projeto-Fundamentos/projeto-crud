@@ -37,12 +37,9 @@ def adicionar_servicos(nome, descricao, duracao):
     with open(services, 'w') as f:
         json.dump(lista_servicos, f, indent=4)
 
-#adicionar_servicos('tosa', 'custa tempo', 10)
-#adicionar_servicos('banho', 'cheiro bom', 5)
-#adicionar_servicos('adestrar', 'pet calmo', 500000)
 
 #READ
-##ordenado
+
 def listar_por_nome():
     lista_servicos = carregar_servicos()
     lista_por_nome = dict(sorted(lista_servicos.items(), key=lambda servico: servico[1]['nome']))
@@ -65,10 +62,6 @@ def achar_por_id(id):
         if(servico_id == id):
             return desc
 
-#print(listar_por_nome())
-#print(listar_por_descricao())
-#print(listar_por_duracao())
-#print(achar_por_id('2'))
 
 #UPDATE
 def atualizar_servicos(id):
@@ -99,8 +92,6 @@ def atualizar_servicos(id):
             json.dump(lista_servicos, f, indent=4)
 
 
-#atualizar_servicos('2')
-#print(listar_por_nome())
 
 #DELETE
 def remover_servicos(id):
@@ -117,20 +108,18 @@ def remover_servicos(id):
     if servico == False:
         print('Servico não encontrado')
 
-#remover_servicos('2')
-
 #Teste
-
 while True:
     try:
         print("Olá, aqui você poderá usar nosso sistema de cadastro de servicos. O que gostaria de fazer?")
-        menu = int(input('(1)Criar um servico\n(2)Listar um servico ja criado\n(3)Alterar um servico\n(3)Excluir um servico\n(7)Sair\n'))
+        menu = int(input('(1)Criar um servico\n(2)Listar um servico ja criado\n(3)Alterar um servico\n(4)Excluir um servico\n(7)Sair\n'))
         match menu:
             case 1:
                 nome = input("Escreva o nome do servico:\n")
                 desc = input("Escreva uma descricao para o servico:\n")
                 duracao = input("Escreva a duracao do servico:\n")
                 adicionar_servicos(nome, desc, duracao)
+                print('Servico criado com sucesso!!')
             case 2:
                 print("\t\tComo você gostaria de listar o servico?")
                 listagem = int(input('\t\t(1)Listar por nome\n\t\t(2)Listar por descricao\n\t\t(3)Listar por duracao\n\t\t(4)Busca por ID\n\t\t(7)Sair\n'))
