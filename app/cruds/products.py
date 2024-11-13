@@ -2,8 +2,7 @@ import json
 import os
 
 from fastapi import HTTPException
-from pydantic import BaseModel
-from app.config import DATA_PATHS
+from config import DATA_PATHS
 
 products_file = DATA_PATHS['produtos']
 
